@@ -28,7 +28,19 @@ We will use a (slightly modified) exercise from https://github.com/CTSRD-CHERI/c
  * Compile `buffer-overflow.c` to a RISC-V binary `buffer-overflow-hybrid` in hybrid capability mode (`riscv64-hybrid`). You can use the `ccc` script from `task/tools` (see the exercise docs for details) for that. What is the full commandline for compilation? 
  
  ```
- INSERT SOLUTION HERE
+ ~/cheribuild/riscv-exercise/task$ ls
+ ~/cheribuild/riscv-exercise/task$ cp buffer-overflow.c tools
+ ~/cheribuild/riscv-exercise/task$ cd tools
+ ~/cheribuild/riscv-exercise/task/tools$ ./ccc buffer-overflow.c (the permission was denied)
+ ~/cheribuild/riscv-exercise/task/tools$ ls -al
+   " -rw-rw-r-- 1 ... buffer-overflow.c
+     -rw-rw-r-- 1 ... ccc "
+ ~/cheribuild/riscv-exercise/task/tools$ chmod 755 ccc
+ ~/cheribuild/riscv-exercise/task/tools$ ls -al
+   " -rw-rw-r-- 1 ... buffer-overflow.c
+     -rwxr-xr-x 1 ... ccc "
+~/cheribuild/riscv-exercise/task/tools$ ./ccc buffer-overflow.c
+ " Unsupported architecture 'buffer-overflow.c' ?? "
  ```
  
  * There is a security flaw in `buffer-overflow.c`. Briefly explain what the flaw is: 
